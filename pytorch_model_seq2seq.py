@@ -17,9 +17,9 @@ class RnnLipModel(nn.Module):
         super().__init__()
         self.num_layers = num_layers
 
-        self.encoder = nn.LSTM(input_dim, hidden_dim, num_layers, batch_first=True, bidirectional=True, dropout=0.5)
-        self.decoder = nn.LSTM(output_dim, hidden_dim, num_layers, batch_first=True, bidirectional=True, dropout=0.5)
-        self.fc = nn.Linear(hidden_dim * 2, output_dim)
+        self.encoder = nn.LSTM(input_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.5)
+        self.decoder = nn.LSTM(output_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.5)
+        self.fc = nn.Linear(hidden_dim, output_dim)
 
     def forward(self, x):
         _, (h, c) = self.encoder(x)
