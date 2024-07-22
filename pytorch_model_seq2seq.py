@@ -168,11 +168,7 @@ def main_train():
     weights_path = 'lip_model_seq2seq.pth'
     torch.save(model.state_dict(), weights_path)
     print(f'Saved model weights to {weights_path}')
-    torch.save({
-        'model_state_dict': model.state_dict(),
-        'optimizer_state_dict': optimizer.state_dict(),
-        'model_architecture': RnnLipModel,
-    }, 'rnn_model.pth')
+    torch.save(model, 'rnn_model.pth')
 
 if __name__ == '__main__':
     main_train()
