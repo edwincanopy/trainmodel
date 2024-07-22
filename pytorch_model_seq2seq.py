@@ -35,8 +35,7 @@ BATCH_SIZE = 120
 LEARNING_RATE = 0.0002
 SHUFFLE_TRAIN = True
 
-DATA_FOLDER = 'data_vm'
-infer_weights_path = 'lip_model_seq2seq_L1.pth'
+DATA_FOLDER = '../data_vm'
 device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 print(f'Device: {device}\n')
 
