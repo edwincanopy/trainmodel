@@ -31,7 +31,7 @@ class RnnLipModel(nn.Module):
 
 # ---
 EPOCHS = 5000
-BATCH_SIZE = 120
+BATCH_SIZE = 40
 LEARNING_RATE = 0.0002
 SHUFFLE_TRAIN = True
 
