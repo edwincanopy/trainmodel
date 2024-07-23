@@ -35,7 +35,7 @@ BATCH_SIZE = 40
 LEARNING_RATE = 0.0002
 SHUFFLE_TRAIN = True
 
-DATA_FOLDER = '../data_vm'
+DATA_FOLDER = '../data4'
 device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 print(f'Device: {device}\n')
 
