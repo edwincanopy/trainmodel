@@ -13,13 +13,13 @@ import sys
 import pytorch_lightning as pl
 
 class RnnLipModel(nn.Module):
-    def __init__(self, input_dim=40, hidden_dim=20, output_dim=5, num_layers=5):
+    def __init__(self, input_dim=40, hidden_dim=40, output_dim=5, num_layers=5):
         super().__init__()
         self.num_layers = num_layers
         self.output_dim = output_dim
 
-        self.encoder = nn.LSTM(input_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.5)
-        self.decoder = nn.LSTM(output_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.5)
+        self.encoder = nn.LSTM(input_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.4)
+        self.decoder = nn.LSTM(output_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.4)
         self.fc = nn.Linear(hidden_dim, output_dim)
 
     def forward(self, x):
@@ -33,7 +33,7 @@ class RnnLipModel(nn.Module):
 # ---
 EPOCHS = 10000
 BATCH_SIZE = 50
-LEARNING_RATE = 0.00018
+LEARNING_RATE = 0.0002
 SHUFFLE_TRAIN = True
 
 DATA_FOLDER = '../data4'
