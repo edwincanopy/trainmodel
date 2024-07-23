@@ -16,6 +16,7 @@ class RnnLipModel(nn.Module):
     def __init__(self, input_dim=40, hidden_dim=20, output_dim=5, num_layers=4):
         super().__init__()
         self.num_layers = num_layers
+        self.output_dim = output_dim
 
         self.encoder = nn.LSTM(input_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.5)
         self.decoder = nn.LSTM(output_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.5)
@@ -24,7 +25,7 @@ class RnnLipModel(nn.Module):
     def forward(self, x):
         _, (h, c) = self.encoder(x)
 
-        decoder_input = torch.zeros(x.size(0), x.size(1), output_dim, device=x.device)
+        decoder_input = torch.zeros(x.size(0), x.size(1), self.output_dim, device=x.device)
         output, _ = self.decoder(decoder_input, (h, c))
         output = self.fc(output)
         return output
