@@ -22,8 +22,13 @@ class RnnLipModel(nn.Module):
         self.decoder = nn.LSTM(output_dim, hidden_dim, num_layers, batch_first=True, bidirectional=False, dropout=0.6)
         self.fc = nn.Linear(hidden_dim, output_dim)
 
+        self.encoder_dropout = nn.Dropout(0.2)
+        self.decoder_dropout = nn.Dropout(0.2)
+
     def forward(self, x):
         _, (h, c) = self.encoder(x)
+        h = self.encoder_dropout(h)
+        c = self.encoder_dropout(c)
 
         decoder_input = torch.zeros(x.size(0), x.size(1), self.output_dim, device=x.device)
         output, _ = self.decoder(decoder_input, (h, c))
