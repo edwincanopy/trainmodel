@@ -13,7 +13,7 @@ import sys
 import pytorch_lightning as pl
 
 class RnnLipModel(nn.Module):
-    def __init__(self, input_dim=40, hidden_dim=40, output_dim=5, num_layers=4):
+    def __init__(self, input_dim=40, hidden_dim=40, output_dim=5, num_layers=5):
         super().__init__()
         self.num_layers = num_layers
         self.output_dim = output_dim
